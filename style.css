@@ -23,13 +23,32 @@ h1 {
   min-height: 100vh;
 }
 
-.aside {
+.aside,
+.menuMobile,
+.menuMailMobile,
+.menuCallMobile,
+.menuMail,
+.menuCall {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
   position: fixed;
   min-height: 100vh;
   width: 320px;
+}
+
+.menuMailMobile,
+.menuCallMobile {
+  z-index: 3;
+}
+
+.menuMail,
+.menuCall {
+  position: absolute;
+  position: fixed;
+  right: 0px;
+  z-index: 1;
+  width: 440px;
 }
 
 .header,
@@ -42,6 +61,11 @@ h1 {
   padding: 20px;
 }
 
+.aside_header.mobile {
+  border-bottom: none;
+  height: 60px;
+}
+
 .aside .aside_header {
  width: 280px;
  border: none;
@@ -51,12 +75,146 @@ h1 {
 .aside_menuTop {
   display: flex;
   align-items: center;
-  width: 180px;
+  width: 163px;
   justify-content: space-between;
 }
 
 .aside .aside_menuTop {
  width: 160px;
+}
+
+.closure {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ff3e79;
+  border: #ff3e79;
+}
+
+.FormMenu {
+  margin: 0 auto;
+}
+
+.FormMenu.mobile {
+  width: 288px;
+}
+
+.menuMailTitle {
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.hiMenu {
+  position: absolute;
+  left: -2.5px;
+  top: 38px;
+}
+
+.hiMenu.mobile {
+  left: -0.5px;
+  top: 99px;
+}
+
+.menuTop {
+  position: absolute;
+  right: 480px;
+  top: 36px;
+}
+
+
+.input-box {
+  height: 50px;
+  margin-bottom: 20px;
+  color: red;
+}
+
+
+.input-box input,
+.input-box textarea {
+  height: 100%; /* растягиваем на всю высоту контейнера 50px */
+width: 376px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px; /* скругляем края */
+  padding-left: 14px;
+  font-family: "TTLakes-Medium", "Arial", sans-serif;
+  font-size: 16px;
+}
+
+.input-box.mobile input,
+.input-box.mobile textarea{
+  width: 274px;
+  margin: 0 auto;
+}
+
+
+.input-box textarea {
+  resize: none; /* чтобы нельзя было менять высоту */
+  font-family: "TTLakes-Medium", "Arial", sans-serif;
+  padding: 14px 0 0 14px;
+  font-size: 16px;
+}
+
+.message-box {
+  min-height: 110px; /* минимальная высота 110px */
+}
+
+
+.FormMenuInfo {
+  width: 376px;
+  padding-top: 20px;
+  color: #7E7E82;
+}
+
+.FormMenuInfo.mobile {
+  width: 285px;
+  padding-top: 20px;
+  color: #7E7E82;
+}
+
+.FormCallInfo.mobile {
+  width: 285px;
+  padding-top: 0;
+  color: #7E7E82;
+}
+
+.FormMenuText {
+  font-size: 14px;
+  font-family: "TTLakes-Medium", "Arial", sans-serif;
+  padding-bottom: 15px;
+}
+
+.FormMenuBt {
+  width: 136px;
+  height: 32px;
+  border-radius: 15px;
+  background-color: #ff3e79;
+  border: none;
+  color: #ffffff;
+  font-size: 12px;
+  font-family: "TTLakes-Medium", "Arial", sans-serif;
+  text-transform: uppercase;
+  float: right;
+}
+
+.FormMenuTextColor {
+  font-size: 14px;
+}
+
+.icon.FormMenu {
+  width: 99px;
+}
+
+.dropdown.FormMenu {
+  position: absolute;
+  top: -19px;
+  right: -3px;
+}
+
+.bt {
+  position: relative;
+  top: 2px;
+  left: 0.5px;
 }
 
 .header_button {
@@ -97,10 +255,17 @@ button:active {transform: scale(1.10);transition-duration: 0.5s;}
   display: none;
 }
 
+
 .section {
   flex-grow: 1;
   overflow-x: scroll;
+  z-index: 0;
+  position: relative;
+  
 }
+
+
+
 
 .navigateMenu {
   white-space: nowrap;
@@ -139,6 +304,7 @@ button:active {transform: scale(1.10);transition-duration: 0.5s;}
   justify-content: space-between;
 }
 
+
 .aside_navigateMenu_active {
   display: flex;
   align-items: center;
@@ -155,7 +321,7 @@ button:active {transform: scale(1.10);transition-duration: 0.5s;}
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  color: #7E7E82;
+  color: #1B1C21;
   padding: 0 0 32px 20px;
 }
 
@@ -172,7 +338,7 @@ button:active {transform: scale(1.10);transition-duration: 0.5s;}
 }
 
 .aside_contact {
-  padding: 0 0 30px 20px;
+  padding: 0 0 15px 20px;
   list-style: none;
   line-height: 35px;
 }
@@ -250,7 +416,7 @@ display: flex;
   color: #7e7e82;
   text-transform: uppercase;
 
-  padding: 0 20px 0 20px;
+  padding: 0 15px 0 15px;
   background-image: linear-gradient(to right, #f8f8f8, #ffffff);
 }
 
@@ -269,9 +435,9 @@ display: flex;
 
 .buttonBrands:nth-child(-n+6) {display: inline;}
 
-.buttonBrands.technic {display: none;}
+.buttonBrands.show {display: none;}
 
-.buttonBrands.technic:nth-child(-n+3) {display: inline;}
+.buttonBrands.show:nth-child(-n+3) {display: inline;}
 
 .buttonBrands {
   width: 224px;
@@ -470,6 +636,28 @@ display: flex;
   text-align: right;
 }
 
+.aside {display: none;}
+
+.menuMobile,
+.menuMail,
+.menuCall,
+.menuMailMobile,
+.menuCallMobile {z-index: 2; display: none;}
+
+
+.overlay {
+  display: none;
+ position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255, 0.9);
+  height: 1900px;
+}
+
+.buttonTableRepair {display: flex;  flex-direction: column; justify-content: flex-end; height: 135px;}
+
 @media screen and (max-width: 768px) {
 
 .services .tablet,
@@ -511,6 +699,7 @@ display: flex;
 .aside {display: none;}
 
 .brands_button,
+.repair_table,
 .about_infoBlock_hidden
  {display: none;}
 
@@ -518,8 +707,8 @@ display: flex;
 
 .swiper-wrapper {
   display: flex;
-  padding: 20px 0 0 20px;
-  height: 115px;
+  padding: 15px 0 0 15px;
+  height: 84px;
 }
 
 .swiper-pagination-bullet {
@@ -539,12 +728,108 @@ display: flex;
   padding-top: 8px;
 }
 
-}
-
  .aside {display: none;}
 
+ .brands {padding-top: 20px;}
 
-@media screen and (min-width: 1366px) {
+.buttonBrands.mobile {height:160px;}
+.buttonBrands.mobileTable {height:200px;}
+
+.swiper-wrapper.mobile {height: 170px;}
+.swiper-wrapper.mobileTable {height: 208px;}
+
+
+
+.servicesTable {display: flex;
+  flex-direction: column;
+  text-align: left; 
+  justify-content: space-between;
+  font-family: "TTLakes-Medium", "Arial", sans-serif;
+  font-size: 14px;
+  padding-top: 15px;
+  width: 200px;
+  position: relative;
+  right: 7px;
+}
+
+.servicesTitle {padding: 0;}
+
+.technicTitle {display: flex; font-family: "TTLakes-Medium", "Arial", sans-serif;}
+
+.buttonTable {display: flex;  flex-direction: column; justify-content: flex-end; height: 135px;}
+
+.buttonTechnic {display: flex;  flex-direction: column; justify-content: flex-end; height: 180px; position: relative; right: 117px;}
+
+.colorTable {color: #7E7E82;}
+
+.buttonBrands.repair {width: 119px;} 
+
+.buttonBrands.table {position: relative; right: 158px; top: 62px;}
+
+.icon.repair {width: 119px;}
+
+.technicTitle.repair {padding-left: 15px;}
+
+.technicTitle.repair.mobile {padding-left: 0;}
+
+.dropdown_repair {padding-right: 15px;}
+
+.swiper-pagination {position: static;}
+
+.icon {width: 215px;}
+
+.description {width: 285px; padding-top: 20px;}
+
+.commercial {width: 214px;}
+
+.dropdown.com {position: relative; right: 87px; top: 10.5px;}
+
+
+.footerInfo {flex-direction: column; text-align: center; height: 165px; justify-content: space-between; align-items: center; padding-top: 20px; padding-bottom: 20px;}
+
+.information {text-align: center;}
+
+.menuMobile,
+.menuMailMobile,
+.menuCallMobile {width: 100vw;}
+
+.overlay {
+  height: 2000px;
+}
+}
+
+@media screen and (min-width: 321px) {
+.menuMailMobile,
+.menuCallMobile {
+    width: 320px;
+
+}
+
+}
+
+@media screen and (min-width: 361px) {
+  .menuMobile {
+    width: 360px;
+    box-shadow: 40px 0 30px -12px rgba(0, 0, 0, .2);
+  }
+
+  .aside_body.mobile {height: 90vh; 
+}
+}
+
+@media screen and (min-width: 361px) {
+  .menuMail,
+  .menuCall {
+    width: 440px;
+    box-shadow: -40px 0 30px -12px rgba(0, 0, 0, .2);
+    border-left: 1px solid #D9FFF5;
+  }
+
+  .aside_body.mobile {height: 90vh; 
+}
+}
+
+@media screen and (min-width: 1440px) {
 
 .header {display: none;}
 
@@ -569,6 +854,11 @@ display: flex;
   font-family: "TTLakes-Medium", "Arial", sans-serif;
 }
 
+.repair_table {
+  width: 1010px;
+}
+
+
 .navigateMenu {
   padding: 10px 0 0 30px;
   max-width: 1145px;
@@ -589,15 +879,14 @@ display: flex;
 .titleRepair {padding: 0 32px 0 32px;}
 
 .buttonBrands:nth-child(-n+8) {display: inline;}
-.buttonBrands.technic:nth-child(-n+4) {display: inline;}
 
-.buttonBrands.technic {display: none;}
-
-.buttonBrands.technic:nth-child(-n+4) {display: inline;}
+.buttonBrands.show {display: none;}
+.buttonBrands.show:nth-child(-n+4) {display: inline;}
 
 .brands_button {width: 1017px; column-gap: 19px;}
 
 .buttonBrands {width: 240px;}
+
 
 .icon {width: 200px;}
 
@@ -607,9 +896,6 @@ display: flex;
 
 .slider-container {display: none;}
 
-.repair_table {
-  width: 1010px;
-}
 .landTitle {grid-template-columns: 449px 227px 80px;}
 
 .land {grid-template-columns: 441px 221px 182px 129px;}
@@ -617,4 +903,8 @@ display: flex;
 .description {padding-top: 20px;}
 
 .footerInfo {padding: 40px 20px 0 20px;}
+
+.overlay {
+  height: 1980px;
+}
 }
